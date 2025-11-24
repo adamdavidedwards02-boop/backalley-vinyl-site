@@ -376,7 +376,7 @@ img {
   position: relative;
 }
 
-/* GRUNGY LOGO STICKER STYLE */
+/* GRUNGY LOGO STICKER STYLE — NEUTRAL, NO BLUE BEHIND LOGO */
 
 .logo-sticker-frame {
   position: relative;
@@ -386,18 +386,17 @@ img {
   padding: 2.6rem;
   border-radius: 22px;
   background:
-    radial-gradient(circle at top, rgba(130, 186, 255, 0.28), transparent 60%),
-    linear-gradient(150deg, rgba(9, 16, 30, 0.98), rgba(30, 61, 99, 0.9)),
+    linear-gradient(145deg, rgba(20, 20, 22, 0.95), rgba(35, 35, 38, 0.88)),
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.05) 2px,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.04) 2px,
       transparent 2px,
       transparent 8px
     );
   box-shadow:
-    0 26px 50px rgba(0, 0, 0, 0.7),
-    inset 0 0 22px rgba(0, 0, 0, 0.55);
+    0 22px 42px rgba(0, 0, 0, 0.65),
+    inset 0 0 18px rgba(0, 0, 0, 0.4);
   transform: rotate(-1.8deg);
   overflow: hidden;
 }
@@ -411,34 +410,34 @@ img {
     url('https://i.imgur.com/9zHZq6X.png');
   background-size: cover;
   mix-blend-mode: overlay;
-  opacity: 0.5;
+  opacity: 0.45;
   pointer-events: none;
   filter: blur(1.3px) contrast(1.25);
 }
 
-/* Grungy logo style */
+/* Grungy logo style — no blue glow */
 .hero-logo-grunge {
   max-width: 84%;
   max-height: 260px;
   object-fit: contain;
   filter:
-    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8))
-    drop-shadow(0 0 16px rgba(23, 55, 94, 0.85));
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.75))
+    drop-shadow(0 0 14px rgba(0, 0, 0, 0.55));
   position: relative;
   z-index: 2;
 }
 
-/* Dirt + grime overlay */
+/* Dirt + grime overlay — neutral */
 .logo-sticker-frame::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
     url('https://i.imgur.com/b6xjF7U.png'),
-    radial-gradient(circle at bottom right, rgba(6, 12, 24, 0.8), transparent 70%);
+    radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.7), transparent 70%);
   background-size: 420px, cover;
   mix-blend-mode: multiply;
-  opacity: 0.4;
+  opacity: 0.38;
   pointer-events: none;
 }
 
@@ -687,11 +686,12 @@ img {
   border-bottom-color: var(--accent-soft);
 }
 
-/* PRICING PAGE */
+/* PRICING PAGE – BIGGER TYPE */
 
 .section-intro {
   max-width: 40rem;
-  font-size: 0.96rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: rgba(18, 24, 35, 0.9);
 }
 
@@ -760,8 +760,8 @@ img {
 }
 
 .accordion-title {
-  font-size: 0.82rem;
-  letter-spacing: 0.16em;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(23, 36, 58, 0.98);
 }
@@ -789,7 +789,7 @@ img {
   margin-top: 0.3rem;
 }
 
-/* PRICE LIST */
+/* PRICE LIST – BIGGER TYPE */
 
 .price-list {
   list-style: none;
@@ -799,7 +799,7 @@ img {
 }
 
 .price-list li {
-  padding: 0.55rem 0.45rem;
+  padding: 0.75rem 0.45rem;
   border-bottom: 1px dashed rgba(124, 149, 189, 0.55);
 }
 
@@ -809,14 +809,14 @@ img {
 
 .price-name {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: rgba(14, 24, 40, 0.98);
 }
 
 .price-value {
   float: right;
-  font-size: 0.86rem;
+  font-size: 1rem;
   color: var(--blue-soft);
   margin-left: 0.6rem;
 }
@@ -824,12 +824,13 @@ img {
 .price-desc {
   display: block;
   clear: both;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: rgba(58, 76, 103, 0.95);
   margin-top: 0.15rem;
+  line-height: 1.6;
 }
 
-/* PRICING HOW-TO */
+/* PRICING HOW-TO – BIGGER HEADINGS/TEXT */
 
 .pricing-howto {
   margin-top: 3rem;
@@ -853,13 +854,15 @@ img {
   letter-spacing: 0.12em;
   margin-top: 0.3rem;
   color: rgba(13, 23, 40, 0.98);
+  font-size: 1.3rem;
 }
 
 .pricing-howto-card ol {
   margin-top: 0.9rem;
   padding-left: 1.1rem;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: rgba(29, 42, 64, 0.96);
+  line-height: 1.75;
 }
 
 .pricing-email {
@@ -977,83 +980,4 @@ img {
   .pricing-howto-card {
     padding: 1.3rem 1.2rem;
   }
-}
-/* ============================
-   PRICING PAGE FONT UPGRADE
-============================ */
-
-.section-intro {
-  font-size: 1.1rem !important;
-  line-height: 1.7;
-}
-
-.accordion-title {
-  font-size: 1rem !important;
-  letter-spacing: 0.18em;
-}
-
-.price-list li {
-  padding: 0.75rem 0.45rem;
-}
-
-.price-name {
-  font-size: 1.05rem !important;
-}
-
-.price-value {
-  font-size: 1rem !important;
-}
-
-.price-desc {
-  font-size: 0.95rem !important;
-  line-height: 1.6;
-}
-
-.pricing-howto-card h2 {
-  font-size: 1.3rem !important;
-}
-
-.pricing-howto-card ol {
-  font-size: 1.05rem !important;
-  line-height: 1.75;
-}
-/* ===========================================
-   REMOVE BLUE FROM HERO LOGO BACKGROUND
-   Neutral grunge sticker panel
-=========================================== */
-
-.logo-sticker-frame {
-  background:
-    linear-gradient(145deg, rgba(20,20,22,0.95), rgba(35,35,38,0.88)),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.04) 2px,
-      transparent 2px,
-      transparent 8px
-    ) !important;
-
-  box-shadow:
-    0 22px 42px rgba(0,0,0,0.65),
-    inset 0 0 18px rgba(0,0,0,0.4) !important;
-}
-
-/* Remove blue glow behind logo */
-.hero-logo-grunge {
-  filter:
-    drop-shadow(0 10px 20px rgba(0,0,0,0.75))
-    drop-shadow(0 0 14px rgba(0,0,0,0.55)) !important;
-}
-
-/* Remove blue grime tint */
-.logo-sticker-frame::after {
-  background:
-    url('https://i.imgur.com/b6xjF7U.png'),
-    radial-gradient(circle at bottom right, rgba(0,0,0,0.7), transparent 70%) !important;
-  opacity: 0.38 !important;
-}
-
-/* Sticker paper edge stays neutral */
-.sticker-edge {
-  opacity: 0.45 !important;
 }

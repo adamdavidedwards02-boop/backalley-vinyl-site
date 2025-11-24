@@ -1069,3 +1069,39 @@ img {
 .btn.outline {
   color: #333 !important;
 }
+/* ==============================================
+   LEFT HERO TEXT → DARK BLUE (Readable + Bold)
+   ============================================== */
+
+/* Headline (GRITTY VISUALS / CLEAN INSTALLS) */
+.hero h1,
+.hero h1 span {
+  color: #1e3d63 !important;              /* dark navy blue */
+  background: none !important;            /* remove gradient */
+  -webkit-background-clip: initial !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.12); /* tiny depth */
+}
+
+/* Eyebrow: STREETWEAR + INDUSTRIAL VINYL */
+.eyebrow {
+  color: #2e5c92 !important;              /* medium-dark blue */
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Body text */
+.hero-text {
+  color: #1e3d63 !important;              /* dark navy */
+  opacity: 1 !important;
+}
+
+/* Bold text inside body */
+.hero-text strong {
+  color: #0f2238 !important;              /* even darker navy */
+}
+
+/* Footnote (local installs...) */
+.hero-footnote {
+  color: #2e5c92 !important;              /* softer blue */
+  opacity: 1 !important;
+}

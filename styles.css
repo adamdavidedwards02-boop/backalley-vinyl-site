@@ -978,3 +978,82 @@ img {
     padding: 1.3rem 1.2rem;
   }
 }
+/* ============================
+   PRICING PAGE FONT UPGRADE
+============================ */
+
+.section-intro {
+  font-size: 1.1rem !important;
+  line-height: 1.7;
+}
+
+.accordion-title {
+  font-size: 1rem !important;
+  letter-spacing: 0.18em;
+}
+
+.price-list li {
+  padding: 0.75rem 0.45rem;
+}
+
+.price-name {
+  font-size: 1.05rem !important;
+}
+
+.price-value {
+  font-size: 1rem !important;
+}
+
+.price-desc {
+  font-size: 0.95rem !important;
+  line-height: 1.6;
+}
+
+.pricing-howto-card h2 {
+  font-size: 1.3rem !important;
+}
+
+.pricing-howto-card ol {
+  font-size: 1.05rem !important;
+  line-height: 1.75;
+}
+/* ===========================================
+   REMOVE BLUE FROM HERO LOGO BACKGROUND
+   Neutral grunge sticker panel
+=========================================== */
+
+.logo-sticker-frame {
+  background:
+    linear-gradient(145deg, rgba(20,20,22,0.95), rgba(35,35,38,0.88)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.04) 2px,
+      transparent 2px,
+      transparent 8px
+    ) !important;
+
+  box-shadow:
+    0 22px 42px rgba(0,0,0,0.65),
+    inset 0 0 18px rgba(0,0,0,0.4) !important;
+}
+
+/* Remove blue glow behind logo */
+.hero-logo-grunge {
+  filter:
+    drop-shadow(0 10px 20px rgba(0,0,0,0.75))
+    drop-shadow(0 0 14px rgba(0,0,0,0.55)) !important;
+}
+
+/* Remove blue grime tint */
+.logo-sticker-frame::after {
+  background:
+    url('https://i.imgur.com/b6xjF7U.png'),
+    radial-gradient(circle at bottom right, rgba(0,0,0,0.7), transparent 70%) !important;
+  opacity: 0.38 !important;
+}
+
+/* Sticker paper edge stays neutral */
+.sticker-edge {
+  opacity: 0.45 !important;
+}

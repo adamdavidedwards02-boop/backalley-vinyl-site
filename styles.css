@@ -350,133 +350,75 @@ img {
   color: var(--ink-soft);
 }
 
-/* HERO PANEL */
+/* HERO PANEL (GRUNGY LOGO) */
 
 .hero-panel {
   position: relative;
-  perspective: 1600px;
 }
 
-.hero-frame {
+/* === GRUNGY LOGO STICKER STYLE === */
+
+.logo-sticker-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.6rem;
   border-radius: 22px;
-  border: 1px solid rgba(16, 16, 18, 0.5);
   background:
-    radial-gradient(circle at top, rgba(36, 78, 122, 0.8), rgba(5, 7, 12, 0.98));
-  padding: 1.4rem;
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.55);
-  position: relative;
+    linear-gradient(145deg, rgba(12, 14, 18, 0.9), rgba(36, 78, 122, 0.25)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+  box-shadow:
+    0 22px 42px rgba(0,0,0,0.5),
+    inset 0 0 18px rgba(0,0,0,0.45);
+  transform: rotate(-1.4deg);
   overflow: hidden;
-  min-height: 260px;
-  transform: rotate3d(1, -1.3, 0, 10deg) translateY(4px);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
-.hero-panel:hover .hero-frame {
-  transform: rotate3d(1, -1.3, 0, 6deg) translateY(0);
-  box-shadow: 0 28px 55px rgba(0, 0, 0, 0.7);
-}
-
-.hero-grid {
+/* Torn paper sticker edge */
+.sticker-edge {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 18px 18px;
-  opacity: 0.5;
+  inset: -12px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 60%),
+    url('https://i.imgur.com/9zHZq6X.png');
+  background-size: cover;
+  mix-blend-mode: overlay;
+  opacity: 0.45;
   pointer-events: none;
+  filter: blur(1.3px) contrast(1.25);
 }
 
-.hero-grid-bottom {
-  background-image:
-    radial-gradient(circle at 80% 140%, rgba(0, 0, 0, 0.9), transparent 45%);
-}
-
-.hero-stats {
+/* Grungy logo style */
+.hero-logo-grunge {
+  max-width: 84%;
+  max-height: 260px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 8px 16px rgba(0,0,0,0.6))
+    drop-shadow(0 0 12px rgba(0,0,0,0.35));
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-  margin-top: 0.4rem;
-  color: #f8f8f8;
+  z-index: 2;
 }
 
-.hero-stats::before {
+/* Dirt + grime overlay */
+.logo-sticker-frame::after {
   content: "";
   position: absolute;
-  inset: -40px;
-  background: radial-gradient(circle at top left, rgba(255, 179, 71, 0.16), transparent 60%);
-}
-
-.hero-stats > div {
-  position: relative;
-  z-index: 1;
-}
-
-.stat-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  opacity: 0.7;
-}
-
-.stat-value {
-  display: block;
-  margin-top: 0.2rem;
-  font-family: 'Oswald', system-ui, sans-serif;
-  letter-spacing: 0.18em;
-  font-size: 0.9rem;
-}
-
-/* HERO TAGS */
-
-.hero-tag {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  border-radius: 999px;
-  padding: 0.4rem 0.7rem;
-  border: 1px solid rgba(16, 16, 18, 0.4);
-  background: rgba(245, 241, 232, 0.9);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  animation: floatTag 5.5s ease-in-out infinite alternate;
-}
-
-.hero-tag-top {
-  position: absolute;
-  top: -0.8rem;
-  left: 1.8rem;
-}
-
-.hero-tag-bottom {
-  position: absolute;
-  bottom: -0.8rem;
-  right: 1rem;
-  animation-delay: 1.4s;
-}
-
-.hero-tag-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.hero-tag-value {
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-@keyframes floatTag {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(4px);
-  }
+  inset: 0;
+  background:
+    url('https://i.imgur.com/b6xjF7U.png'),
+    radial-gradient(circle at bottom right, rgba(0,0,0,0.4), transparent 60%);
+  background-size: 420px, cover;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 /* SECTION TITLES */
@@ -866,12 +808,11 @@ img {
   color: var(--ink-soft);
 }
 
-/* FOOTER + TICKER STRIP */
+/* FOOTER */
 
 .site-footer {
   padding: 1.2rem 0 1.6rem;
   border-top: 1px solid rgba(16, 16, 18, 0.08);
-  position: relative;
 }
 
 .footer-inner {
@@ -959,4 +900,126 @@ img {
   .pricing-howto-card {
     padding: 1.3rem 1.2rem;
   }
+}
+/* ================================
+   BLUE THEME BOOST — BACK ALLEY VINYL
+   Paste this at the bottom of styles.css
+=================================== */
+
+/* Stronger blue overall */
+:root {
+  --blue: #1e3d63;
+  --blue-soft: #2e5c92;
+  --accent-soft: #3d7cc4;
+}
+
+/* Global tint */
+body {
+  background:
+    radial-gradient(circle at top left, #ffffff 0%, #ece7dc 30%, #d4cdc0 60%),
+    linear-gradient(135deg, rgba(30, 61, 99, 0.08), transparent 70%),
+    repeating-linear-gradient(-45deg,
+      rgba(30, 61, 99, 0.06) 0,
+      rgba(30, 61, 99, 0.06) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+}
+
+/* Hero background blue wash */
+.hero::before {
+  background: linear-gradient(
+      135deg,
+      rgba(30, 61, 99, 0.25),
+      rgba(30, 61, 99, 0.05) 60%
+    );
+}
+
+/* Vertical label strip more blue */
+.hero-inner::before {
+  color: rgba(30, 61, 99, 0.55);
+  background: rgba(233, 230, 224, 0.95);
+  border: 1px solid rgba(30, 61, 99, 0.4);
+}
+
+/* Headings more blue */
+.eyebrow {
+  color: var(--blue-soft);
+}
+
+.section-header h2,
+.hero h1 span {
+  background: linear-gradient(90deg, var(--blue-soft), var(--accent-soft));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Primary buttons deeper blue */
+.btn.primary {
+  background: linear-gradient(145deg, var(--blue-soft), #142538);
+  border-color: #15273c;
+}
+
+/* Ghost hover becomes blue-tinted */
+.btn.ghost:hover {
+  background: rgba(30, 61, 99, 0.12);
+}
+
+/* Outline buttons hover → blue */
+.btn.outline:hover {
+  background: rgba(30, 61, 99, 0.12);
+  border-color: var(--blue-soft);
+}
+
+/* Card hover border becomes blue */
+.card:hover {
+  border-color: rgba(30, 61, 99, 0.55);
+}
+
+/* Blue glow behind sticker frame */
+.logo-sticker-frame {
+  background:
+    linear-gradient(145deg, rgba(30, 61, 99, 0.9), rgba(30, 61, 99, 0.25)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.04) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+}
+
+/* Grunge texture tinted blue */
+.logo-sticker-frame::after {
+  background:
+    url('https://i.imgur.com/b6xjF7U.png'),
+    radial-gradient(circle at bottom right, rgba(30, 61, 99, 0.55), transparent 70%);
+}
+
+/* Section background grid → blue tint */
+.section-striped::before {
+  background:
+    linear-gradient(135deg, rgba(30, 61, 99, 0.08) 0, transparent 12px),
+    linear-gradient(45deg, rgba(30, 61, 99, 0.12), transparent 70%);
+}
+
+/* CTA strip becomes deeper blue */
+.section-cta {
+  background: radial-gradient(circle at top left, var(--blue-soft), #0a1522);
+}
+
+.section-cta .btn.outline:hover {
+  background: rgba(30, 61, 99, 0.3);
+}
+
+/* Footer top border blue-ish */
+.site-footer {
+  border-top: 1px solid rgba(30, 61, 99, 0.3);
+}
+
+/* Typography tint */
+.contact-value a,
+.nav-link:hover,
+.card-tag {
+  color: var(--blue-soft) !important;
 }

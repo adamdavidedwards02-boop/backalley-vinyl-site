@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BackAlley Vinyl</title>
+  <style>
+    :root {
+      --primary: #6ec1ff;       /* Light Blue */
+      --background: #f5f2eb;    /* Bone */
+      --text: #111827;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --border: #d4d4d8;
+      --dark: #020617;          /* Hero background */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout helpers */
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section {
+      padding: 3.5rem 1.5rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.98rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      background: radial-gradient(circle at top left, #0b1220, var(--dark));
+      color: #f9fafb;
+      padding: 3.5rem 1.5rem 3rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 800px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      }
+    }
+
+    .hero-logo-wrap {
+      max-width: 220px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-logo {
+      filter: drop-shadow(0 16px 40px rgba(15, 23, 42, 0.75));
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-highlight {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      max-width: 32rem;
+      color: #e5e7eb;
+      margin-bottom: 1.25rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.25rem 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(6px);
+    }
+
+    .pill-dot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, border-color 150ms ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #020617;
+      box-shadow: 0 10px 35px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.85);
+      transform: translateY(-1px);
+    }
+
+    .hero-side-card {
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1.4rem 1.5rem;
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.18), rgba(15, 23, 42, 0.96));
+      color: #e5e7eb;
+      box-shadow: 0 22px 80px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-side-heading {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-side-body {
+      font-size: 0.9rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      font-size: 0.85rem;
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      color: #cbd5f5;
+    }
+
+    .hero-side-list li::before {
+      content: "▹";
+      margin-right: 0.4rem;
+      color: var(--primary);
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        align-items: start;
+      }
+    }
+
+    .about-text {
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1.25rem 1.4rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+      font-size: 0.9rem;
+    }
+
+    .about-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    /* Pricing / Services */
+
+    .pricing-note {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.25rem;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .card-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .price-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      background: rgba(110, 193, 255, 0.08);
+      border: 1px solid rgba(110, 193, 255, 0.4);
+      padding: 0.25rem 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .price-pill span {
+      font-weight: 600;
+    }
+
+    .price-list {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .price-item-label {
+      font-weight: 500;
+    }
+
+    .price-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .divider {
+      margin: 1.2rem 0;
+      border-top: 1px dashed #e5e7eb;
+    }
+
+    .mini-grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    @media (min-width: 700px) {
+      .mini-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .mini-card-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .mini-card-price {
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .mini-card-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Highlights */
+
+    .highlights-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .highlights-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .highlight-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1rem 1rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+      font-size: 0.88rem;
+    }
+
+    .highlight-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      gap: 1.8rem;
+    }
+
+    @media (min-width: 820px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        align-items: start;
+      }
+    }
+
+    .contact-detail {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .contact-email {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0.4rem 0 0.6rem;
+      word-break: break-all;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+      background: #f9fafb;
+      color: #4b5563;
+      margin-top: 0.25rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.6rem;
+      border: 1px solid #d4d4d8;
+      background: #f9fafb;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+      resize: vertical;
+      min-height: 2.5rem;
+    }
+
+    textarea {
+      min-height: 130px;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(110, 193, 255, 0.4);
+      background: #ffffff;
+    }
+
+    .form-footnote {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .footer {
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      background: #f3f4f6;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-logo-wrap">
+            <img src="logo.png" alt="BackAlley Vinyl logo" class="hero-logo" />
+          </div>
+
+          <div class="tagline">Vinyl · Merch · Decals</div>
+
+          <h1 class="hero-title">
+            Streetwear-inspired <span class="hero-highlight">vinyl & merch</span> for real-world brands.
+          </h1>
+
+          <p class="hero-subtitle">
+            BackAlley Vinyl is an independent vinyl + merch studio in Wawa, ON. We focus on B2B projects and custom runs —
+            from shop-front text and fleet decals to tight, limited merch drops.
+          </p>
+
+          <div class="hero-meta">
+            <div class="pill">
+              <span class="pill-dot"></span>
+              <span>Based in Wawa · Serving Northern Ontario</span>
+            </div>
+            <div class="pill">
+              <span class="pill-dot"></span>
+              <span>Competitive small-batch & bulk pricing</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Get a quote</a>
+            <a href="#pricing" class="btn btn-ghost">View pricing</a>
+          </div>
+        </div>
+
+        <aside class="hero-side-card">
+          <div class="hero-side-heading">What we do</div>
+          <div class="hero-side-body">
+            Clean, industrial layouts with a streetwear edge — built for shops, small businesses, and crews that care how they look.
+          </div>
+          <ul class="hero-side-list">
+            <li>B2B merch & branded apparel</li>
+            <li>Vehicle decals & branding</li>
+            <li>Custom decals & sticker runs</li>
+            <li>Storefront text & window graphics</li>
+          </ul>
+        </aside>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="tagline">About BackAlley Vinyl</div>
+        <div class="about-grid">
+          <div>
+            <h2>Independent vinyl & merch studio in Wawa.</h2>
+            <p class="about-text">
+              BackAlley Vinyl is a small, independent print studio rooted in Wawa, Ontario. We keep things simple:
+              tight designs, clean installs, and reliable turnarounds built around how real shops and crews actually work.
+              <br /><br />
+              We focus on B2B work and custom runs — from outfitting your team in branded gear to making sure your
+              storefront, work trucks, and trailers all hit the same visual standard. Whether you’re a growing small
+              business or a local outfit leveling up your look, we help you show up like you mean it.
+            </p>
+          </div>
+
+          <aside class="about-card">
+            <div class="card-title" style="margin-bottom: 0.4rem;">Built for real-world use.</div>
+            <div class="card-sub">
+              No overcomplication, no massive minimums. Just sharp, durable vinyl and merch that holds up to workdays,
+              road salt, and repeat washes.
+            </div>
+            <div class="about-chip-row">
+              <span class="chip">Small-batch friendly</span>
+              <span class="chip">B2B focused</span>
+              <span class="chip">Install-ready graphics</span>
+              <span class="chip">Custom runs welcomed</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING / SERVICES -->
+    <section class="section" id="pricing">
+      <div class="section-inner">
+        <div class="tagline">Services & Competitive Pricing</div>
+        <h2>Simple, flexible pricing for merch, decals, and storefront work.</h2>
+        <p class="pricing-note">
+          Pricing below is a guide for common orders. Final quotes depend on artwork, quantity, and install requirements.
+          Send your logo and a rough idea of quantities and we’ll get you a clean, no-pressure estimate.
+          All pricing in CAD before tax.
+        </p>
+
+        <div class="pricing-grid">
+          <!-- PACKAGES -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Merch Drops & B2B Bundles</h3>
+              <span class="card-tag">Package pricing</span>
+            </div>
+            <p class="card-sub">
+              Ideal for teams, crews, and small businesses that want consistent, on-brand gear without overbuying.
+            </p>
+
+            <div class="price-pill">
+              Merch bundles from <span>$399</span>+
+            </div>
+
+            <ul class="price-list">
+              <li>
+                <div class="price-item-label">Starter Crew Pack</div>
+                <div class="price-meta">
+                  Example: 10 tees + 5 hoodies with one front logo print.<br />
+                  <strong>From $525</strong>
+                </div>
+              </li>
+              <li>
+                <div class="price-item-label">Shop Floor Pack</div>
+                <div class="price-meta">
+                  Example: 20 tees + 10 hoodies, front logo + small back print.<br />
+                  <strong>From $1,049</strong>
+                </div>
+              </li>
+              <li>
+                <div class="price-item-label">Drop / Launch Pack</div>
+                <div class="price-meta">
+                  Custom merch run for brand drops or events. Mix of tees, hoodies, and decals.<br />
+                  <strong>Custom quoted</strong>
+                </div>
+              </li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <div class="mini-grid">
+              <div>
+                <div class="mini-card-label">Tees</div>
+                <div class="mini-card-price">From $28 / shirt</div>
+                <div class="mini-card-note">Single-location print, minimum 10. Better rates as you scale.</div>
+              </div>
+              <div>
+                <div class="mini-card-label">Hoodies</div>
+                <div class="mini-card-price">From $55 / hoodie</div>
+                <div class="mini-card-note">Midweight and heavyweight options available.</div>
+              </div>
+              <div>
+                <div class="mini-card-label">Hats / Beanies</div>
+                <div class="mini-card-price">From $30 / piece</div>
+                <div class="mini-card-note">Front logo placements, small runs welcome.</div>
+              </div>
+              <div>
+                <div class="mini-card-label">Add-on decals</div>
+                <div class="mini-card-price">From $4 / decal</div>
+                <div class="mini-card-note">Add logo decals to any merch order for easy upsell.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- A-LA-CARTE -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Vehicle, Storefront & Decals</h3>
+              <span class="card-tag">A-la-carte menu</span>
+            </div>
+            <p class="card-sub">
+              Vehicle branding, window text, and custom decals sized to your setup — from work trucks to shop glass.
+            </p>
+
+            <div class="mini-grid" style="margin-bottom: 1rem;">
+              <div>
+                <div class="mini-card-label">Vehicle door logos</div>
+                <div class="mini-card-price">From $140 / pair</div>
+                <div class="mini-card-note">Cut vinyl door logos sized to your truck or van, ready to apply.</div>
+              </div>
+              <div>
+                <div class="mini-card-label">Windshield banners</div>
+                <div class="mini-card-price">From $90</div>
+                <div class="mini-card-note">Clean, readable text in your brand style.</div>
+              </div>
+              <div>
+                <div class="mini-card-label">Storefront text</div>
+                <div class="mini-card-price">From $220 / window</div>
+                <div class="mini-card-note">Hours, logo, and contact details for front glass.</div>
+              </div>
+              <div>
+                <div class="mini-card-label">Custom decal runs</div>
+                <div class="mini-card-price">From $60 for 25 pcs</div>
+                <div class="mini-card-note">Perfect for brand stickers, helmets, toolboxes and giveaways.</div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <ul class="price-list">
+              <li>
+                <div class="price-item-label">Install & layout</div>
+                <div class="price-meta">
+                  Install pricing depends on surface, size, and location. Send photos and rough measurements for a fast quote.
+                </div>
+              </li>
+              <li>
+                <div class="price-item-label">Artwork & setup</div>
+                <div class="price-meta">
+                  Clean vector files are best. If you only have a rough logo or screenshot, we can help refine it — quoted per project.
+                </div>
+              </li>
+              <li>
+                <div class="price-item-label">Universal rates</div>
+                <div class="price-meta">
+                  Same competitive rates for personal and business jobs. No fuss — just solid value.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="tagline">Why BackAlley</div>
+        <h2>Streetwear energy. Industrial execution.</h2>
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <div class="highlight-title">Built for working crews</div>
+            <div class="highlight-tag">Real-world durability</div>
+            <p>
+              We care more about how things look after a season of use than how they look on a mockup. Vinyl and garments picked for actual wear and tear.
+            </p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-title">Low drama, high clarity</div>
+            <div class="highlight-tag">Straightforward quoting</div>
+            <p>
+              Email your logo, quantities, and a quick idea of what you want. We reply with clear options, no surprise fees, and realistic timelines.
+            </p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-title">Small-batch & B2B focused</div>
+            <div class="highlight-tag">Custom runs welcomed</div>
+            <p>
+              From a handful of tees to full merch bundles and matching vehicle decals, we’re dialed in on flexible runs for local businesses and crews.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <div class="tagline">Contact</div>
+        <div class="contact-grid">
+          <div>
+            <h2>Send your logo & rough idea. We’ll handle the rest.</h2>
+            <p class="contact-detail">
+              The fastest way to get started is to email your logo, what you’re thinking (merch, vehicle decals, storefront, etc.), and any quantities or sizes you know.
+            </p>
+
+            <div class="contact-email">
+              <a href="mailto:backalleyvinyl@gmail.com">backalleyvinyl@gmail.com</a>
+            </div>
+
+            <div class="contact-chip">
+              <span>Based in Wawa, ON</span>
+              <span>·</span>
+              <span>Serving Northern Ontario</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title" style="margin-bottom: 0.8rem;">Quick email form</h3>
+            <form action="mailto:backalleyvinyl@gmail.com" method="post" enctype="text/plain">
+              <div>
+                <label for="name">Name / Business</label>
+                <input type="text" id="name" name="Name" placeholder="Your name or business" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" placeholder="you@example.com" required />
+              </div>
+              <div>
+                <label for="message">Project details</label>
+                <textarea id="message" name="Project details" placeholder="Merch, vehicle decals, storefront text, quantities, timeline…"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.3rem;">
+                Email BackAlley Vinyl
+              </button>
+              <p class="form-footnote">
+                This opens your email app with the details filled in. You can edit everything before sending.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      © <span id="year"></span> BackAlley Vinyl · Wawa, Ontario
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

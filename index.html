@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BackAlley Vinyl</title>
+  <title>BackAlley Vinyl · Vinyl, Merch & Decals in Wawa, Ontario</title>
+
+  <!-- SEO meta description -->
+  <meta
+    name="description"
+    content="BackAlley Vinyl is an independent vinyl and merch studio in Wawa, Ontario. Storefront text, fleet decals, branded workwear, and custom merch for real shops and crews."
+  />
+
   <style>
     :root {
       --primary: #6ec1ff;       /* Light Blue */
@@ -19,6 +26,10 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Smooth scroll for anchor links */
     }
 
     body {
@@ -39,6 +50,14 @@
       text-decoration: none;
     }
 
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     /* Layout helpers */
 
     .page {
@@ -49,6 +68,12 @@
 
     .section {
       padding: 3.5rem 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .section {
+        padding: 2.5rem 1.2rem;
+      }
     }
 
     .section-inner {
@@ -85,6 +110,12 @@
       color: #f9fafb;
       padding: 3.5rem 1.5rem 3rem;
       border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 2.75rem 1.2rem 2.5rem;
+      }
     }
 
     .hero-inner {
@@ -284,6 +315,7 @@
       font-size: 0.86rem;
       color: var(--muted);
       margin-bottom: 1.5rem;
+      max-width: 44rem;
     }
 
     .pricing-grid {
@@ -311,6 +343,7 @@
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 0.4rem;
+      gap: 1rem;
     }
 
     .card-title {
@@ -322,6 +355,7 @@
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--muted);
+      white-space: nowrap;
     }
 
     .card-sub {
@@ -801,7 +835,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" aria-label="Quick email form">
             <h3 class="card-title" style="margin-bottom: 0.8rem;">Quick email form</h3>
             <form action="mailto:backalleyvinyl@gmail.com" method="post" enctype="text/plain">
               <div>
